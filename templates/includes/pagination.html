@@ -16,7 +16,7 @@
                     {% if i == page_obj.paginator.ELLIPSIS %}
                         <li class="page-item"><span class="page-link">{{ i }}</span></li>
                     {% else %}
-                        <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET %}&{{ request.GET|urlencode }}{% endif %}">{{ i }}</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}{% if filter_params %}&limit={{ filter_params.limit }}{% endif %}">{{ i }}</a></li>
                     {% endif %}
                 {% endif %}
             {% endfor %}
