@@ -1,0 +1,28 @@
+{% extends "layouts/base_list.html" %}
+{% load static %}
+{% block page_title %} Операции {% endblock %}
+{% block url_table_search %}{% url "invoice_list" %}{% endblock %}
+{% block table %}
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Статус</th>
+        <th>Реквизиты</th>
+        <th>Сумма</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if object_list %}
+        {% for transaction in object_list %}
+            <tr class="item-row">
+                <td><span class="font-weight-bold">{{ transaction.pk }}</span></td>
+                <td>
+                    <span class="font-weight-bold {{ transaction.status.class }}">{{ transaction.status }}</span>
+                </td>
+                <td><span class="font-weight-normal">{{ transaction.payment_detail }}</span></td>
+                <td><span class="font-weight-normal">{{ transaction.amount }}</span></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+{% endblock %}

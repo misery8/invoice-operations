@@ -1,0 +1,33 @@
+{% extends "layouts/base_list.html" %}
+{% load static %}
+{% load i18n %}
+{% block page_title %} Реквизиты {% endblock %}
+{% block url_table_search %}{% url "payment_detail_list" %}{% endblock %}
+{% block table %}
+    <thead>
+    <tr>
+        <th><a href="#" class="sort-col active" data-column="id">ID</a></th>
+        <th><a href="#" class="sort-col" data-column="payment_type">Тип платежа</a></th>
+        <th><a href="#" class="sort-col" data-column="card_type">Тип карты/Счета</a></th>
+        <th><a href="#" class="sort-col" data-column="owner_name">ФИО владельца</a></th>
+        <th><a href="#" class="sort-col" data-column="phone_number">Номер телефона</a></th>
+        <th><a href="#" class="sort-col" data-column="limit">Лимит</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if object_list %}
+        {% for element in object_list %}
+            <tr class="item-row">
+                <td><span class="font-weight-bold">{{ element.pk }}</span></td>
+                <td>
+                    <span class="font-weight-bold">{{ element.payment_type }}</span>
+                </td>
+                <td><span class="font-weight-normal">{{ element.card_type }}</span></td>
+                <td><span class="font-weight-normal">{{ element.owner_name }}</span></td>
+                <td><span class="font-weight-normal">{{ element.phone_number }}</span></td>
+                <td><span class="font-weight-normal">{{ element.limit }}</span></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+{% endblock %}
